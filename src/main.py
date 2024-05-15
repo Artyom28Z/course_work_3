@@ -1,4 +1,4 @@
-from funcions import information_transaction
+from src.funcions import information_transaction
 
 
 def main():
@@ -9,5 +9,5 @@ def main():
     for i in range(5):
         print(information_transaction(i))
 
-
-main()
+if __name__ == '__main__':
+    main()

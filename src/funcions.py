@@ -19,10 +19,10 @@ def sorted_date_transactions():
     Функция сортировки операций по дате (вначале самые последние)
     :return: список со словарями
     """
-    transaction = load_transactions('operations.json')
-    transactions = [i for i in transaction if 'date' in i]
+    transactions = load_transactions('operations.json')
+    new_transactions = [i for i in transactions if 'date' in i]
 
-    sorted_transaction = sorted(transactions, key=itemgetter("date"), reverse=True)
+    sorted_transaction = sorted(new_transactions, key=itemgetter("date"), reverse=True)
     return sorted_transaction
 
 
@@ -31,9 +31,9 @@ def executed_transactions():
     Функция удаления из списка отменненых операций (в списке остаются только успешные операции)
     :return: список со словарями
     """
-    check_transaction = sorted_date_transactions()
+    sorted_transaction = sorted_date_transactions()
     new_list_transaction = []
-    for i in check_transaction:
+    for i in sorted_transaction:
         if i["state"] == "EXECUTED":
             new_list_transaction.append(i)
     return new_list_transaction
