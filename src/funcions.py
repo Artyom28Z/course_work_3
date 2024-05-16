@@ -14,24 +14,24 @@ def load_transactions(path):
     return transactions
 
 
-def sorted_date_transactions():
+def sorted_date_transactions(transactions):
     """
     Функция сортировки операций по дате (вначале самые последние)
     :return: список со словарями
     """
-    transactions = load_transactions('operations.json')
+    #transactions = load_transactions('operations.json')
     new_transactions = [i for i in transactions if 'date' in i]
 
     sorted_transaction = sorted(new_transactions, key=itemgetter("date"), reverse=True)
     return sorted_transaction
 
 
-def executed_transactions():
+def executed_transactions(sorted_transaction):
     """
     Функция удаления из списка отменненых операций (в списке остаются только успешные операции)
     :return: список со словарями
     """
-    sorted_transaction = sorted_date_transactions()
+    #sorted_transaction = sorted_date_transactions()
     new_list_transaction = []
     for i in sorted_transaction:
         if i["state"] == "EXECUTED":
@@ -39,13 +39,13 @@ def executed_transactions():
     return new_list_transaction
 
 
-def information_transaction(i):
+def information_transaction(i, five_transaction):
     """
     Функция отображения информации об операции
     :param i:
     :return: f-строки
     """
-    five_transaction = executed_transactions()
+    #five_transaction = executed_transactions()
 
     date = f"{five_transaction[i]["date"][8:10]}.{five_transaction[i]["date"][5:7]}.{five_transaction[i]["date"][0:4]}"
 
